@@ -1,7 +1,8 @@
+// QUESTION: do we need the big one???
+
 import React from 'react';
 import { connect } from 'react-redux';
-import {RECEIVE_TODOS, RECEIVE_TODO,
-  receiveTodos, receiveTodo} from '../../actions/todo_actions';
+import {receiveTodo, removeTodo} from '../../actions/todo_actions';
 import {allTodos}  from '../../reducers/selectors';
 import TodoList from './todo_list';
 
@@ -11,13 +12,11 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  receiveTodo: todo => dispatch(receiveTodo(todo))
+  receiveTodo: todo => dispatch(receiveTodo(todo)),
+  removeTodo: todo => dispatch(removeTodo(todo))
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(TodoList);
-
-const { receiveTodo } = this.props;
-this.props.receiveTodo(todo)
