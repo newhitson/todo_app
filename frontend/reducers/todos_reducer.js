@@ -1,24 +1,22 @@
-import {RECEIVE_TODOS, RECEIVE_TODO} from '../actions/todo_actions';
+import {RECEIVE_TODOS, RECEIVE_TODO, receiveTodos, receiveTodo} from '../actions/todo_actions';
 import merge from 'lodash/merge';
 import union from 'lodash/union';
 
-const todoReducer = (state = {}, action) => {
-Object.freeze(state);
+ const todoReducer = (sliceOfState = {}, action) => {
+  Object.freeze(sliceOfState);
   switch(action.type) {
     case RECEIVE_TODOS:
-      return {todos: action.todos};
+    const newState = {};
+      action.todos.forEach(todo => {newState[todo.id] = todo; });
+      return newState;
     case RECEIVE_TODO:
-       return merge ({
-         title : action.title,
-         body : action.body,
-         done : action.done  
-      }, state
-
+       return merge (
+         {},
+         {[action.todo.id]: action.todo},
+          sliceOfState);
     default:
-      return state;
-
-
+      return sliceOfState;
   }
+};
 
-
-}
+export default todoReducer;

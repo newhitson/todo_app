@@ -8,9 +8,16 @@ export const receiveTodos = (todos) => ({
   // return a new state that has gone thought the new state
 });
 
-export const receiveTodo = (title, body,done) => ({
+export const receiveTodo = (todo) => ({
   type: RECEIVE_TODO,
-  title,
-  body,
-  done
+    todo
 });
+
+window.receiveTodos = receiveTodos;
+window.receiveTodo = receiveTodo;
+
+// id, title, body, done
+// id,
+// title,
+// body,
+// done
